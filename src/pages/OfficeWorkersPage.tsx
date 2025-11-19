@@ -3,12 +3,16 @@ import {
   Container,
   VStack,
   Heading,
-  Select,
   Input,
   Button,
   SimpleGrid,
   Text,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, useNavigate } from "react-router-dom";
@@ -92,6 +96,31 @@ export const OfficeWorkersPage = () => {
     );
   }
 
+  const menuButtonStyles = {
+    bg: "gray.700",
+    color: "gray.100",
+    borderColor: "gray.600",
+    _hover: { bg: "gray.700", borderColor: "gray.500" },
+    _active: { bg: "gray.700" },
+    _expanded: {
+      borderColor: "brand.500",
+      boxShadow: "0 0 0 1px var(--chakra-colors-brand-500)",
+    },
+  };
+
+  const religionLabel =
+    filters.religion || t("customer.filterByReligion");
+
+  const typeLabel =
+    filters.type || t("customer.filterByType");
+
+  const hasWorkedInGulfLabel =
+    filters.hasWorkedInGulf === "yes"
+      ? t("office.yes")
+      : filters.hasWorkedInGulf === "no"
+      ? t("office.no")
+      : t("customer.all");
+
   return (
     <Box bg="gray.900" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
       <Container maxW="1400px" w="100%">
@@ -122,64 +151,128 @@ export const OfficeWorkersPage = () => {
               <Heading size="lg" fontWeight="700" color="gray.100">
                 {t("customer.filters")}
               </Heading>
+
               <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} spacing={4}>
-              <Select
-                placeholder={t("customer.filterByReligion")}
-                value={filters.religion}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setFilters({ ...filters, religion: e.target.value })
-                }
-              >
-                {uniqueReligions.map((religion) => (
-                  <option key={religion} value={religion}>
-                    {religion}
-                  </option>
-                ))}
-              </Select>
+                {/* Religion */}
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    rightIcon={<ChevronDownIcon />}
+                    w="100%"
+                    justifyContent="space-between"
+                    {...menuButtonStyles}
+                  >
+                    {religionLabel}
+                  </MenuButton>
+                  <MenuList bg="gray.800" borderColor="gray.700">
+                    {uniqueReligions.map((religion) => (
+                      <MenuItem
+                        key={religion}
+                        bg="gray.800"
+                        _hover={{ bg: "gray.700" }}
+                        _focus={{ bg: "gray.700" }}
+                        onClick={() =>
+                          setFilters((prev) => ({ ...prev, religion }))
+                        }
+                      >
+                        {religion}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </Menu>
 
-              <Input
-                placeholder={t("customer.minAge")}
-                type="number"
-                value={filters.minAge}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setFilters({ ...filters, minAge: e.target.value })
-                }
-              />
+                <Input
+                  placeholder={t("customer.minAge")}
+                  type="number"
+                  value={filters.minAge}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setFilters({ ...filters, minAge: e.target.value })
+                  }
+                />
 
-              <Input
-                placeholder={t("customer.maxAge")}
-                type="number"
-                value={filters.maxAge}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setFilters({ ...filters, maxAge: e.target.value })
-                }
-              />
+                <Input
+                  placeholder={t("customer.maxAge")}
+                  type="number"
+                  value={filters.maxAge}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setFilters({ ...filters, maxAge: e.target.value })
+                  }
+                />
 
-              <Select
-                placeholder={t("customer.filterByType")}
-                value={filters.type}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setFilters({ ...filters, type: e.target.value })
-                }
-              >
-                {uniqueTypes.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </Select>
+                {/* Type */}
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    rightIcon={<ChevronDownIcon />}
+                    w="100%"
+                    justifyContent="space-between"
+                    {...menuButtonStyles}
+                  >
+                    {typeLabel}
+                  </MenuButton>
+                  <MenuList bg="gray.800" borderColor="gray.700">
+                    {uniqueTypes.map((type) => (
+                      <MenuItem
+                        key={type}
+                        bg="gray.800"
+                        _hover={{ bg: "gray.700" }}
+                        _focus={{ bg: "gray.700" }}
+                        onClick={() =>
+                          setFilters((prev) => ({ ...prev, type }))
+                        }
+                      >
+                        {type}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </Menu>
 
-              <Select
-                value={filters.hasWorkedInGulf}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setFilters({ ...filters, hasWorkedInGulf: e.target.value })
-                }
-              >
-                <option value="all">{t("customer.all")}</option>
-                <option value="yes">{t("office.yes")}</option>
-                <option value="no">{t("office.no")}</option>
-              </Select>
+                {/* Has worked in Gulf */}
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    rightIcon={<ChevronDownIcon />}
+                    w="100%"
+                    justifyContent="space-between"
+                    {...menuButtonStyles}
+                  >
+                    {hasWorkedInGulfLabel}
+                  </MenuButton>
+                  <MenuList bg="gray.800" borderColor="gray.700">
+                    <MenuItem
+                      bg="gray.800"
+                      _hover={{ bg: "gray.700" }}
+                      _focus={{ bg: "gray.700" }}
+                      onClick={() =>
+                        setFilters((prev) => ({ ...prev, hasWorkedInGulf: "all" }))
+                      }
+                    >
+                      {t("customer.all")}
+                    </MenuItem>
+                    <MenuItem
+                      bg="gray.800"
+                      _hover={{ bg: "gray.700" }}
+                      _focus={{ bg: "gray.700" }}
+                      onClick={() =>
+                        setFilters((prev) => ({ ...prev, hasWorkedInGulf: "yes" }))
+                      }
+                    >
+                      {t("office.yes")}
+                    </MenuItem>
+                    <MenuItem
+                      bg="gray.800"
+                      _hover={{ bg: "gray.700" }}
+                      _focus={{ bg: "gray.700" }}
+                      onClick={() =>
+                        setFilters((prev) => ({ ...prev, hasWorkedInGulf: "no" }))
+                      }
+                    >
+                      {t("office.no")}
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
               </SimpleGrid>
+
               <Button
                 onClick={clearFilters}
                 size="md"
@@ -195,24 +288,23 @@ export const OfficeWorkersPage = () => {
           </Box>
 
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
-          {filteredWorkers.length === 0 ? (
-            <Box gridColumn="1 / -1" textAlign="center" py={8}>
-              <Text>{t("common.noData")}</Text>
-            </Box>
-          ) : (
-            filteredWorkers.map((worker) => (
-              <WorkerCard
-                key={worker.id}
-                worker={worker}
-                showReserveButton={true}
-                onReserve={handleReserve}
-              />
-            ))
-          )}
+            {filteredWorkers.length === 0 ? (
+              <Box gridColumn="1 / -1" textAlign="center" py={8}>
+                <Text>{t("common.noData")}</Text>
+              </Box>
+            ) : (
+              filteredWorkers.map((worker) => (
+                <WorkerCard
+                  key={worker.id}
+                  worker={worker}
+                  showReserveButton={true}
+                  onReserve={handleReserve}
+                />
+              ))
+            )}
           </SimpleGrid>
         </VStack>
       </Container>
     </Box>
   );
 };
-
