@@ -42,7 +42,7 @@ import { offices } from "../data/offices";
 
 export const OfficeDashboardPage = () => {
   const { t } = useTranslation();
-  const { currentUser, workers, deleteWorker, reservations } = useAuth();
+  const { currentUser, workers, deleteWorker, reservationRequests, updateReservationRequestStatus } = useAuth();
   const [selectedWorker, setSelectedWorker] = useState<Worker | null>(null);
   const [workerToDelete, setWorkerToDelete] = useState<Worker | null>(null);
 
@@ -54,32 +54,75 @@ export const OfficeDashboardPage = () => {
     (worker) => worker.officeId === currentUser?.officeId
   );
 
+  // Filter reservation requests for current office
+  const officeRequests = reservationRequests.filter(
+    (r) => r.officeId === currentUser?.officeId
+  );
+
   // Calculate statistics
   const stats = useMemo(() => {
-    const officeReservations = reservations.filter(
-      (r) => r.officeId === currentUser?.officeId
+    const approvedRequests = officeRequests.filter(
+      (r) => r.status === "approved"
     );
 
-    const totalRevenue = officeReservations.reduce((sum, reservation) => {
-      const worker = workers.find((w) => w.id === reservation.workerId);
+    const totalRevenue = approvedRequests.reduce((sum, request) => {
+      const worker = workers.find((w) => w.id === request.workerId);
       return sum + (worker?.fullPackagePrice || 0);
     }, 0);
 
-    const totalFees = officeReservations.reduce((sum, reservation) => {
-      const worker = workers.find((w) => w.id === reservation.workerId);
+    const totalFees = approvedRequests.reduce((sum, request) => {
+      const worker = workers.find((w) => w.id === request.workerId);
       const packagePrice = worker?.fullPackagePrice || 0;
       const deposit = worker?.depositAmount || 0;
       // Fees = package price - deposit (assuming deposit goes to worker)
       return sum + (packagePrice - deposit);
     }, 0);
 
+    const pendingRequests = officeRequests.filter((r) => r.status === "pending").length;
+
     return {
       totalWorkers: officeWorkers.length,
-      successfulDeals: officeReservations.length,
+      successfulDeals: approvedRequests.length,
       totalRevenue,
       totalFees,
+      pendingRequests,
     };
-  }, [reservations, workers, officeWorkers, currentUser?.officeId]);
+  }, [officeRequests, workers, officeWorkers]);
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "pending":
+        return "yellow";
+      case "approved":
+        return "green";
+      case "rejected":
+        return "red";
+      case "cancelled":
+        return "gray";
+      default:
+        return "gray";
+    }
+  };
+
+  const handleApprove = (requestId: string) => {
+    updateReservationRequestStatus(requestId, "approved");
+    toast({
+      title: t("office.requestApproved"),
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
+
+  const handleReject = (requestId: string) => {
+    updateReservationRequestStatus(requestId, "rejected");
+    toast({
+      title: t("office.requestRejected"),
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
   const {
     isOpen: isFormOpen,
     onOpen: onFormOpen,
@@ -180,7 +223,7 @@ export const OfficeDashboardPage = () => {
           </Flex>
 
           {/* Statistics Cards */}
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} spacing={6}>
             <Card bg="white" boxShadow="soft" border="1px solid" borderColor="gray.100">
               <CardBody>
                 <Stat>
@@ -248,7 +291,112 @@ export const OfficeDashboardPage = () => {
                 </Stat>
               </CardBody>
             </Card>
+
+            <Card bg="white" boxShadow="soft" border="1px solid" borderColor="gray.100">
+              <CardBody>
+                <Stat>
+                  <StatLabel fontSize="sm" color="gray.600" fontWeight="600">
+                    Pending Requests
+                  </StatLabel>
+                  <StatNumber fontSize="3xl" color="yellow.500" fontWeight="800">
+                    {stats.pendingRequests}
+                  </StatNumber>
+                  <StatHelpText>
+                    <StatArrow type="increase" />
+                    Awaiting review
+                  </StatHelpText>
+                </Stat>
+              </CardBody>
+            </Card>
           </SimpleGrid>
+
+          {/* Reservation Requests Table */}
+          <Box
+            bg="white"
+            borderRadius="xl"
+            boxShadow="soft"
+            border="1px solid"
+            borderColor="gray.100"
+            overflow="hidden"
+          >
+            <Box p={6} borderBottom="1px solid" borderColor="gray.100">
+              <Text fontSize="xl" fontWeight="700" color="gray.800">
+                {t("office.reservationRequests")}
+              </Text>
+            </Box>
+            <TableContainer>
+              <Table variant="modern">
+                <Thead>
+                  <Tr>
+                    <Th>{t("customer.workerName")}</Th>
+                    <Th>{t("customer.requestedAt")}</Th>
+                    <Th>{t("customer.statusLabel")}</Th>
+                    <Th>{t("customer.fullPackagePrice")}</Th>
+                    <Th>{t("common.actions")}</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {officeRequests.length === 0 ? (
+                    <Tr>
+                      <Td colSpan={5} textAlign="center" py={10}>
+                        <Text color="gray.500">{t("office.noReservationRequests")}</Text>
+                      </Td>
+                    </Tr>
+                  ) : (
+                    officeRequests.map((request) => {
+                      const worker = workers.find((w) => w.id === request.workerId);
+                      return (
+                        <Tr key={request.id}>
+                          <Td>
+                            <HStack spacing={3}>
+                              <Avatar
+                                src={worker?.imageUrl}
+                                name={worker?.name}
+                                size="sm"
+                                border="2px solid"
+                                borderColor="brand.200"
+                              />
+                              <Text fontWeight="600">{worker?.name || "Unknown"}</Text>
+                            </HStack>
+                          </Td>
+                          <Td>
+                            {new Date(request.requestedAt).toLocaleDateString()}
+                          </Td>
+                          <Td>
+                            <Badge colorScheme={getStatusColor(request.status)} px={2} py={1} borderRadius="md">
+                              {t(`customer.status.${request.status}`)}
+                            </Badge>
+                          </Td>
+                          <Td fontWeight="600">{worker?.fullPackagePrice || 0} SAR</Td>
+                          <Td>
+                            {request.status === "pending" && (
+                              <HStack spacing={2}>
+                                <Button
+                                  size="sm"
+                                  colorScheme="green"
+                                  onClick={() => handleApprove(request.id)}
+                                >
+                                  {t("office.approve")}
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  colorScheme="red"
+                                  variant="outline"
+                                  onClick={() => handleReject(request.id)}
+                                >
+                                  {t("office.reject")}
+                                </Button>
+                              </HStack>
+                            )}
+                          </Td>
+                        </Tr>
+                      );
+                    })
+                  )}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </Box>
 
           {/* Workers Table */}
           <Box

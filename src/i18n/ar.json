@@ -20,7 +20,8 @@
     "loading": "جاري التحميل...",
     "noData": "لا توجد بيانات متاحة",
     "view": "عرض",
-    "import": "استيراد"
+    "import": "استيراد",
+    "actions": "الإجراءات"
   },
   "auth": {
     "title": "تسجيل الدخول",
@@ -30,6 +31,7 @@
   "nav": {
     "myWorkers": "عمالي",
     "offices": "المكاتب",
+    "searchWorkers": "البحث عن العمال",
     "myReservations": "حجوزاتي"
   },
   "office": {
@@ -48,7 +50,13 @@
     "workerAdded": "تم إضافة العامل بنجاح",
     "workerUpdated": "تم تحديث العامل بنجاح",
     "workerDeleted": "تم حذف العامل بنجاح",
-    "csvImported": "تم استيراد العمال بنجاح"
+    "csvImported": "تم استيراد العمال بنجاح",
+    "reservationRequests": "طلبات الحجز",
+    "noReservationRequests": "لا توجد طلبات حجز بعد",
+    "approve": "موافقة",
+    "reject": "رفض",
+    "requestApproved": "تم الموافقة على الطلب بنجاح",
+    "requestRejected": "تم رفض الطلب بنجاح"
   },
   "worker": {
     "form": {
@@ -102,7 +110,17 @@
     "maxAge": "الحد الأقصى للعمر",
     "filterByType": "تصفية حسب النوع",
     "filterByGulfExperience": "عمل في الخليج",
+    "filterByOffice": "تصفية حسب المكتب",
     "all": "الكل",
+    "searchWorkers": "البحث عن العمال",
+    "searchWorkersDescription": "ابحث وفلتر العمال من جميع المكاتب",
+    "searchAndFilters": "البحث والتصفية",
+    "searchByName": "ابحث باسم العامل...",
+    "minSalary": "الحد الأدنى للراتب (ريال)",
+    "maxSalary": "الحد الأقصى للراتب (ريال)",
+    "resultsCount": "تم العثور على {{count}} عامل",
+    "noWorkersFound": "لم يتم العثور على عمال",
+    "tryDifferentFilters": "حاول تعديل البحث أو التصفية",
     "workerDetails": "تفاصيل العامل",
     "downloadCV": "تحميل السيرة الذاتية",
     "reserveWorker": "حجز هذا العامل",
@@ -115,9 +133,46 @@
     "total": "الإجمالي",
     "reserveConfirm": "تأكيد الحجز",
     "reservationCreated": "تم إنشاء الحجز بنجاح",
+    "reservationRequestCreated": "تم إرسال طلب الحجز بنجاح",
+    "reservationRequestConfirm": "إرسال طلب الحجز",
+    "sendRequest": "إرسال الطلب",
     "myReservations": "حجوزاتي",
     "reservedAt": "تاريخ الحجز",
-    "noReservations": "ليس لديك حجوزات بعد"
+    "requestedAt": "تاريخ الطلب",
+    "noReservations": "ليس لديك حجوزات بعد",
+    "statusLabel": "الحالة",
+    "cancelRequest": "إلغاء الطلب",
+    "requestCancelled": "تم إلغاء الطلب بنجاح",
+    "status": {
+      "pending": "قيد الانتظار",
+      "approved": "موافق عليه",
+      "rejected": "مرفوض",
+      "cancelled": "ملغي"
+    }
+  },
+  "common": {
+    "appName": "سوق العمالة المنزلية",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "save": "حفظ",
+    "add": "إضافة",
+    "search": "بحث",
+    "filter": "تصفية",
+    "clear": "مسح",
+    "confirm": "تأكيد",
+    "back": "رجوع",
+    "next": "التالي",
+    "loading": "جاري التحميل...",
+    "noData": "لا توجد بيانات متاحة",
+    "view": "عرض",
+    "import": "استيراد",
+    "actions": "الإجراءات"
   }
 }
 

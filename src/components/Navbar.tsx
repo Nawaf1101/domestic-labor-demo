@@ -101,6 +101,21 @@ export const Navbar = () => {
                   </Button>
                   <Button
                     as={Link}
+                    to="/customer/search"
+                    variant="ghost"
+                    size="md"
+                    fontWeight="600"
+                    _hover={{
+                      bg: "brand.50",
+                      color: "brand.600",
+                      transform: "translateY(-2px)",
+                    }}
+                    transition="all 0.2s"
+                  >
+                    {t("nav.searchWorkers")}
+                  </Button>
+                  <Button
+                    as={Link}
                     to="/customer/reservations"
                     variant="ghost"
                     size="md"

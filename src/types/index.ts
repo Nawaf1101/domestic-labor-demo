@@ -44,12 +44,16 @@ export interface Worker {
   depositAmount: number; // عربون
 }
 
-// Reservation model
-export interface Reservation {
+// Reservation Request model
+export type ReservationRequestStatus = "pending" | "approved" | "rejected" | "cancelled";
+
+export interface ReservationRequest {
   id: string;
   customerId: string;
   workerId: string;
   officeId: string;
-  reservedAt: string; // ISO date string
+  requestedAt: string; // ISO date string
+  status: ReservationRequestStatus;
+  statusUpdatedAt?: string; // ISO date string (when approved/rejected/cancelled)
 }
 

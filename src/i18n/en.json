@@ -1,27 +1,4 @@
 {
-  "common": {
-    "appName": "Domestic Labor Marketplace",
-    "login": "Login",
-    "logout": "Logout",
-    "email": "Email",
-    "password": "Password",
-    "submit": "Submit",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "edit": "Edit",
-    "save": "Save",
-    "add": "Add",
-    "search": "Search",
-    "filter": "Filter",
-    "clear": "Clear",
-    "confirm": "Confirm",
-    "back": "Back",
-    "next": "Next",
-    "loading": "Loading...",
-    "noData": "No data available",
-    "view": "View",
-    "import": "Import"
-  },
   "auth": {
     "title": "Login",
     "invalidCredentials": "Invalid email or password",
@@ -30,6 +7,7 @@
   "nav": {
     "myWorkers": "My Workers",
     "offices": "Offices",
+    "searchWorkers": "Search Workers",
     "myReservations": "My Reservations"
   },
   "office": {
@@ -48,7 +26,13 @@
     "workerAdded": "Worker added successfully",
     "workerUpdated": "Worker updated successfully",
     "workerDeleted": "Worker deleted successfully",
-    "csvImported": "Workers imported successfully"
+    "csvImported": "Workers imported successfully",
+    "reservationRequests": "Reservation Requests",
+    "noReservationRequests": "No reservation requests yet",
+    "approve": "Approve",
+    "reject": "Reject",
+    "requestApproved": "Request approved successfully",
+    "requestRejected": "Request rejected successfully"
   },
   "worker": {
     "form": {
@@ -102,7 +86,17 @@
     "maxAge": "Max Age",
     "filterByType": "Filter by Type",
     "filterByGulfExperience": "Has Worked in Gulf",
+    "filterByOffice": "Filter by Office",
     "all": "All",
+    "searchWorkers": "Search Workers",
+    "searchWorkersDescription": "Search and filter workers across all offices",
+    "searchAndFilters": "Search & Filters",
+    "searchByName": "Search by worker name...",
+    "minSalary": "Min Salary (SAR)",
+    "maxSalary": "Max Salary (SAR)",
+    "resultsCount": "{{count}} worker(s) found",
+    "noWorkersFound": "No workers found",
+    "tryDifferentFilters": "Try adjusting your search or filters",
     "workerDetails": "Worker Details",
     "downloadCV": "Download CV",
     "reserveWorker": "Reserve this Worker",
@@ -115,9 +109,46 @@
     "total": "Total",
     "reserveConfirm": "Confirm Reservation",
     "reservationCreated": "Reservation created successfully",
+    "reservationRequestCreated": "Reservation request sent successfully",
+    "reservationRequestConfirm": "Send Reservation Request",
+    "sendRequest": "Send Request",
     "myReservations": "My Reservations",
     "reservedAt": "Reserved At",
-    "noReservations": "You have no reservations yet"
+    "requestedAt": "Requested At",
+    "noReservations": "You have no reservations yet",
+    "statusLabel": "Status",
+    "cancelRequest": "Cancel Request",
+    "requestCancelled": "Request cancelled successfully",
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "cancelled": "Cancelled"
+    }
+  },
+  "common": {
+    "appName": "Domestic Labor Marketplace",
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "save": "Save",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "loading": "Loading...",
+    "noData": "No data available",
+    "view": "View",
+    "import": "Import",
+    "actions": "Actions"
   }
 }
 

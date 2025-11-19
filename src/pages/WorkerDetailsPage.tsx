@@ -28,7 +28,7 @@ export const WorkerDetailsPage = () => {
   const { workerId } = useParams<{ workerId: string }>();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { workers, addReservation, currentUser } = useAuth();
+  const { workers, addReservationRequest, currentUser } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
@@ -55,15 +55,14 @@ export const WorkerDetailsPage = () => {
   const confirmReservation = () => {
     if (!currentUser || !worker) return;
 
-    addReservation({
+    addReservationRequest({
       customerId: currentUser.id,
       workerId: worker.id,
       officeId: worker.officeId,
-      reservedAt: new Date().toISOString(),
     });
 
     toast({
-      title: t("customer.reservationCreated"),
+      title: t("customer.reservationRequestCreated"),
       status: "success",
       duration: 3000,
       isClosable: true,
@@ -242,7 +241,7 @@ export const WorkerDetailsPage = () => {
           <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{t("customer.reservationConfirm")}</ModalHeader>
+          <ModalHeader>{t("customer.reservationRequestConfirm")}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <VStack align="stretch" spacing={3}>
@@ -275,7 +274,7 @@ export const WorkerDetailsPage = () => {
               {t("common.cancel")}
             </Button>
             <Button colorScheme="brand" onClick={confirmReservation}>
-              {t("customer.reserveConfirm")}
+              {t("customer.sendRequest")}
             </Button>
           </ModalFooter>
         </ModalContent>

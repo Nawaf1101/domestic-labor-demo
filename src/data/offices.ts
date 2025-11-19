@@ -7,7 +7,7 @@ export const offices: Office[] = [
     rating: 4.8,
     numberOfReviews: 245,
     loginEmail: "office1@gulfcare.com",
-    loginPassword: "office123",
+    loginPassword: "123",
     logoUrl: "https://via.placeholder.com/150x150?text=GulfCare",
   },
   {
@@ -16,7 +16,7 @@ export const offices: Office[] = [
     rating: 4.5,
     numberOfReviews: 189,
     loginEmail: "office2@homehelp.com",
-    loginPassword: "office123",
+    loginPassword: "123",
     logoUrl: "https://via.placeholder.com/150x150?text=HomeHelp",
   },
   {
@@ -25,7 +25,7 @@ export const offices: Office[] = [
     rating: 4.9,
     numberOfReviews: 312,
     loginEmail: "office3@elite.com",
-    loginPassword: "office123",
+    loginPassword: "123",
     logoUrl: "https://via.placeholder.com/150x150?text=Elite",
   },
   {
@@ -34,7 +34,7 @@ export const offices: Office[] = [
     rating: 4.3,
     numberOfReviews: 156,
     loginEmail: "office4@premium.com",
-    loginPassword: "office123",
+    loginPassword: "123",
     logoUrl: "https://via.placeholder.com/150x150?text=Premium",
   },
   {
@@ -43,7 +43,7 @@ export const offices: Office[] = [
     rating: 4.6,
     numberOfReviews: 278,
     loginEmail: "office5@trusted.com",
-    loginPassword: "office123",
+    loginPassword: "123",
     logoUrl: "https://via.placeholder.com/150x150?text=Trusted",
   },
   {
@@ -52,7 +52,7 @@ export const offices: Office[] = [
     rating: 4.4,
     numberOfReviews: 134,
     loginEmail: "office6@familycare.com",
-    loginPassword: "office123",
+    loginPassword: "123",
     logoUrl: "https://via.placeholder.com/150x150?text=Family",
   },
   {
@@ -61,7 +61,7 @@ export const offices: Office[] = [
     rating: 4.7,
     numberOfReviews: 298,
     loginEmail: "office7@royal.com",
-    loginPassword: "office123",
+    loginPassword: "123",
     logoUrl: "https://via.placeholder.com/150x150?text=Royal",
   },
 ];

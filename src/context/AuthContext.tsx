@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
-import type { User, Reservation, Worker } from "../types";
+import type { User, ReservationRequest, Worker, ReservationRequestStatus } from "../types";
 import { allUsers } from "../data/users";
 import { workers as initialWorkers } from "../data/workers";
 
@@ -8,8 +8,10 @@ interface AuthContextType {
   currentUser: User | null;
   login: (email: string, password: string) => boolean;
   logout: () => void;
-  reservations: Reservation[];
-  addReservation: (reservation: Omit<Reservation, "id">) => void;
+  reservationRequests: ReservationRequest[];
+  addReservationRequest: (request: Omit<ReservationRequest, "id" | "status" | "requestedAt">) => void;
+  updateReservationRequestStatus: (id: string, status: ReservationRequestStatus) => void;
+  cancelReservationRequest: (id: string) => void;
   workers: Worker[];
   addWorker: (worker: Omit<Worker, "id">) => void;
   updateWorker: (id: string, worker: Partial<Worker>) => void;
@@ -21,7 +23,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [reservations, setReservations] = useState<Reservation[]>([]);
+  const [reservationRequests, setReservationRequests] = useState<ReservationRequest[]>([]);
   const [workers, setWorkers] = useState<Worker[]>(initialWorkers);
 
   const login = (email: string, password: string): boolean => {
@@ -39,12 +41,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setCurrentUser(null);
   };
 
-  const addReservation = (reservation: Omit<Reservation, "id">) => {
-    const newReservation: Reservation = {
-      ...reservation,
-      id: `reservation-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+  const addReservationRequest = (request: Omit<ReservationRequest, "id" | "status" | "requestedAt">) => {
+    const newRequest: ReservationRequest = {
+      ...request,
+      id: `request-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      status: "pending",
+      requestedAt: new Date().toISOString(),
     };
-    setReservations([...reservations, newReservation]);
+    setReservationRequests([...reservationRequests, newRequest]);
+  };
+
+  const updateReservationRequestStatus = (id: string, status: ReservationRequestStatus) => {
+    setReservationRequests(
+      reservationRequests.map((request) =>
+        request.id === id
+          ? { ...request, status, statusUpdatedAt: new Date().toISOString() }
+          : request
+      )
+    );
+  };
+
+  const cancelReservationRequest = (id: string) => {
+    const request = reservationRequests.find((r) => r.id === id);
+    if (request && request.status === "pending") {
+      updateReservationRequestStatus(id, "cancelled");
+    }
   };
 
   const addWorker = (worker: Omit<Worker, "id">) => {
@@ -79,8 +100,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         currentUser,
         login,
         logout,
-        reservations,
-        addReservation,
+        reservationRequests,
+        addReservationRequest,
+        updateReservationRequestStatus,
+        cancelReservationRequest,
         workers,
         addWorker,
         updateWorker,

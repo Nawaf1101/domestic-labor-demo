@@ -9,6 +9,7 @@ import { OfficesListPage } from "./pages/OfficesListPage";
 import { OfficeWorkersPage } from "./pages/OfficeWorkersPage";
 import { WorkerDetailsPage } from "./pages/WorkerDetailsPage";
 import { MyReservationsPage } from "./pages/MyReservationsPage";
+import { SearchWorkersPage } from "./pages/SearchWorkersPage";
 import theme from "./theme";
 import "./i18n";
 
@@ -49,6 +50,14 @@ const AppContent = () => {
         element={
           <ProtectedRoute requiredRole="customer">
             <OfficesListPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/customer/search"
+        element={
+          <ProtectedRoute requiredRole="customer">
+            <SearchWorkersPage />
           </ProtectedRoute>
         }
       />

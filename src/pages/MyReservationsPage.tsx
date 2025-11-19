@@ -11,6 +11,9 @@ import {
   Td,
   TableContainer,
   Text,
+  Badge,
+  Button,
+  useToast,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../context/AuthContext";
@@ -18,9 +21,10 @@ import { offices } from "../data/offices";
 
 export const MyReservationsPage = () => {
   const { t } = useTranslation();
-  const { currentUser, reservations, workers } = useAuth();
+  const { currentUser, reservationRequests, workers, cancelReservationRequest } = useAuth();
+  const toast = useToast();
 
-  const userReservations = reservations.filter(
+  const userRequests = reservationRequests.filter(
     (r) => r.customerId === currentUser?.id
   );
 
@@ -29,14 +33,39 @@ export const MyReservationsPage = () => {
     return office?.name || "Unknown";
   };
 
-  const getReservationDetails = (reservation: typeof reservations[0]) => {
-    const worker = workers.find((w) => w.id === reservation.workerId);
+  const getRequestDetails = (request: typeof reservationRequests[0]) => {
+    const worker = workers.find((w) => w.id === request.workerId);
     return {
       workerName: worker?.name || "Unknown",
-      officeName: getOfficeName(reservation.officeId),
+      officeName: getOfficeName(request.officeId),
       depositAmount: worker?.depositAmount || 0,
       fullPackagePrice: worker?.fullPackagePrice || 0,
     };
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "pending":
+        return "yellow";
+      case "approved":
+        return "green";
+      case "rejected":
+        return "red";
+      case "cancelled":
+        return "gray";
+      default:
+        return "gray";
+    }
+  };
+
+  const handleCancel = (requestId: string) => {
+    cancelReservationRequest(requestId);
+    toast({
+      title: t("customer.requestCancelled"),
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
   };
 
   return (
@@ -53,11 +82,11 @@ export const MyReservationsPage = () => {
               {t("customer.myReservations")}
             </Heading>
             <Text color="gray.600" fontSize="md">
-              View and manage your reservations
+              View and manage your reservation requests
             </Text>
           </VStack>
 
-          {userReservations.length === 0 ? (
+          {userRequests.length === 0 ? (
             <Box
               textAlign="center"
               py={20}
@@ -86,23 +115,42 @@ export const MyReservationsPage = () => {
                 <Tr>
                   <Th>{t("customer.workerName")}</Th>
                   <Th>{t("customer.officeName")}</Th>
-                  <Th>{t("customer.reservedAt")}</Th>
+                  <Th>{t("customer.requestedAt")}</Th>
+                  <Th>{t("customer.statusLabel")}</Th>
                   <Th>{t("customer.depositAmount")}</Th>
                   <Th>{t("customer.fullPackagePrice")}</Th>
+                  <Th>{t("common.actions")}</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                {userReservations.map((reservation) => {
-                  const details = getReservationDetails(reservation);
+                {userRequests.map((request) => {
+                  const details = getRequestDetails(request);
                   return (
-                    <Tr key={reservation.id}>
+                    <Tr key={request.id}>
                       <Td>{details.workerName}</Td>
                       <Td>{details.officeName}</Td>
                       <Td>
-                        {new Date(reservation.reservedAt).toLocaleDateString()}
+                        {new Date(request.requestedAt).toLocaleDateString()}
+                      </Td>
+                      <Td>
+                        <Badge colorScheme={getStatusColor(request.status)} px={2} py={1} borderRadius="md">
+                          {t(`customer.status.${request.status}`)}
+                        </Badge>
                       </Td>
                       <Td>{details.depositAmount} SAR</Td>
                       <Td>{details.fullPackagePrice} SAR</Td>
+                      <Td>
+                        {request.status === "pending" && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            colorScheme="red"
+                            onClick={() => handleCancel(request.id)}
+                          >
+                            {t("customer.cancelRequest")}
+                          </Button>
+                        )}
+                      </Td>
                     </Tr>
                   );
                 })}
