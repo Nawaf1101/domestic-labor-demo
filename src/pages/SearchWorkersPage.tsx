@@ -407,29 +407,11 @@ export const SearchWorkersPage = () => {
               </Box>
             ) : (
               filteredWorkers.map((worker) => (
-                <Box key={worker.id} position="relative">
-                  <WorkerCard
-                    worker={worker}
-                    showReserveButton={true}
-                    onReserve={handleReserve}
-                  />
-                  <Box
-                    position="absolute"
-                    top={2}
-                    left={2}
-                    bg="gray.800"
-                    px={2}
-                    py={1}
-                    borderRadius="md"
-                    boxShadow="sm"
-                    border="1px solid"
-                    borderColor="gray.700"
-                  >
-                    <Text fontSize="xs" fontWeight="600" color="brand.600">
-                      {getOfficeName(worker.officeId)}
-                    </Text>
-                  </Box>
-                </Box>
+                <WorkerCard
+                  worker={worker}
+                  showReserveButton={true}
+                  onReserve={handleReserve}
+                />
               ))
             )}
           </SimpleGrid>
