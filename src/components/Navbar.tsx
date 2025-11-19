@@ -15,8 +15,8 @@ export const Navbar = () => {
   const { t, i18n } = useTranslation();
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-  const bg = useColorModeValue("white", "gray.800");
-  const borderColor = useColorModeValue("gray.200", "gray.700");
+  const bg = "gray.800";
+  const borderColor = "gray.700";
 
   const toggleLanguage = () => {
     const newLang = i18n.language === "en" ? "ar" : "en";
@@ -45,7 +45,7 @@ export const Navbar = () => {
       zIndex={1000}
       boxShadow="0 2px 10px rgba(0, 0, 0, 0.05)"
       backdropFilter="blur(10px)"
-      bgGradient="linear(to-r, white, gray.50)"
+      bgGradient="linear(to-r, gray.800, gray.900)"
     >
       <Flex justify="space-between" align="center" maxW="1400px" mx="auto">
         <Text

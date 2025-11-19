@@ -127,7 +127,7 @@ export const SearchWorkersPage = () => {
   };
 
   return (
-    <Box bg="gray.50" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
+    <Box bg="gray.900" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
       <Container maxW="1400px" w="100%">
         <VStack spacing={8} align="stretch">
           <VStack align="start" spacing={2}>
@@ -139,7 +139,7 @@ export const SearchWorkersPage = () => {
             >
               {t("customer.searchWorkers")}
             </Heading>
-            <Text color="gray.600" fontSize="md">
+            <Text color="gray.300" fontSize="md">
               {t("customer.searchWorkersDescription")}
             </Text>
           </VStack>
@@ -149,12 +149,12 @@ export const SearchWorkersPage = () => {
             p={6}
             borderWidth="1px"
             borderRadius="xl"
-            bg="white"
+            bg="gray.800"
             boxShadow="soft"
-            borderColor="gray.100"
+            borderColor="gray.700"
           >
             <VStack spacing={5} align="stretch">
-              <Heading size="lg" fontWeight="700" color="gray.800">
+              <Heading size="lg" fontWeight="700" color="gray.100">
                 {t("customer.searchAndFilters")}
               </Heading>
 
@@ -169,7 +169,7 @@ export const SearchWorkersPage = () => {
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setSearchQuery(e.target.value)
                   }
-                  bg="gray.50"
+                  bg="gray.700"
                 />
               </InputGroup>
 
@@ -281,7 +281,7 @@ export const SearchWorkersPage = () => {
 
           {/* Results Count */}
           <Box>
-            <Text color="gray.600" fontSize="sm" fontWeight="600">
+            <Text color="gray.300" fontSize="sm" fontWeight="600">
               {t("customer.resultsCount", { count: filteredWorkers.length })}
             </Text>
           </Box>
@@ -290,10 +290,10 @@ export const SearchWorkersPage = () => {
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
             {filteredWorkers.length === 0 ? (
               <Box gridColumn="1 / -1" textAlign="center" py={12}>
-                <Text fontSize="lg" color="gray.500" fontWeight="500">
+                <Text fontSize="lg" color="gray.400" fontWeight="500">
                   {t("customer.noWorkersFound")}
                 </Text>
-                <Text fontSize="sm" color="gray.400" mt={2}>
+                <Text fontSize="sm" color="gray.500" mt={2}>
                   {t("customer.tryDifferentFilters")}
                 </Text>
               </Box>
@@ -309,13 +309,13 @@ export const SearchWorkersPage = () => {
                     position="absolute"
                     top={2}
                     left={2}
-                    bg="white"
+                    bg="gray.800"
                     px={2}
                     py={1}
                     borderRadius="md"
                     boxShadow="sm"
                     border="1px solid"
-                    borderColor="gray.200"
+                    borderColor="gray.700"
                   >
                     <Text fontSize="xs" fontWeight="600" color="brand.600">
                       {getOfficeName(worker.officeId)}

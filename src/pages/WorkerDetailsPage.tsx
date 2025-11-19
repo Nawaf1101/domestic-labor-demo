@@ -73,7 +73,7 @@ export const WorkerDetailsPage = () => {
   };
 
   return (
-    <Box bg="gray.50" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
+    <Box bg="gray.900" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
       <Container maxW="1400px" w="100%">
         <VStack spacing={8} align="stretch">
           <Button
@@ -91,11 +91,11 @@ export const WorkerDetailsPage = () => {
           </Button>
 
           <Box
-            bg="white"
+            bg="gray.800"
             borderRadius="2xl"
             boxShadow="soft"
             border="1px solid"
-            borderColor="gray.100"
+            borderColor="gray.700"
             p={8}
           >
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
@@ -104,9 +104,9 @@ export const WorkerDetailsPage = () => {
                 overflow="hidden"
                 boxShadow="medium"
                 border="1px solid"
-                borderColor="gray.200"
+                borderColor="gray.700"
                 p={8}
-                bgGradient="linear(to-br, brand.50, gray.50)"
+                bgGradient="linear(to-br, brand.900, gray.800)"
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
@@ -124,7 +124,7 @@ export const WorkerDetailsPage = () => {
 
               <VStack align="stretch" spacing={6}>
                 <VStack align="start" spacing={3}>
-                  <Heading fontSize="3xl" fontWeight="800" color="gray.800">
+                  <Heading fontSize="3xl" fontWeight="800" color="gray.100">
                     {worker.name}
                   </Heading>
 
@@ -144,55 +144,55 @@ export const WorkerDetailsPage = () => {
             </HStack>
 
                   <Box
-                    bg="gray.50"
+                    bg="gray.700"
                     p={6}
                     borderRadius="xl"
                     w="100%"
                     border="1px solid"
-                    borderColor="gray.200"
+                    borderColor="gray.700"
                   >
                     <VStack align="stretch" spacing={4}>
                   <HStack justify="space-between">
-                    <Text fontWeight="bold">{t("customer.officeName")}:</Text>
-                    <Text>{office.name}</Text>
+                    <Text fontWeight="bold" color="gray.200">{t("customer.officeName")}:</Text>
+                    <Text color="gray.100">{office.name}</Text>
                   </HStack>
                   <HStack justify="space-between">
-                    <Text fontWeight="bold">{t("worker.form.originCountry")}:</Text>
-                    <Text>{worker.originCountry}</Text>
+                    <Text fontWeight="bold" color="gray.200">{t("worker.form.originCountry")}:</Text>
+                    <Text color="gray.100">{worker.originCountry}</Text>
                   </HStack>
                   <HStack justify="space-between">
-                    <Text fontWeight="bold">{t("worker.form.experienceYears")}:</Text>
-                    <Text>{worker.experienceYears}</Text>
+                    <Text fontWeight="bold" color="gray.200">{t("worker.form.experienceYears")}:</Text>
+                    <Text color="gray.100">{worker.experienceYears}</Text>
                   </HStack>
                   <HStack justify="space-between">
-                    <Text fontWeight="bold">{t("office.hasWorkedInGulf")}:</Text>
-                    <Text>
+                    <Text fontWeight="bold" color="gray.200">{t("office.hasWorkedInGulf")}:</Text>
+                    <Text color="gray.100">
                       {worker.hasWorkedInGulf ? t("office.yes") : t("office.no")}
                     </Text>
                   </HStack>
                   {worker.hasWorkedInGulf && worker.previousGulfCountries && (
                     <HStack justify="space-between">
-                      <Text fontWeight="bold">
+                      <Text fontWeight="bold" color="gray.200">
                         {t("worker.form.previousGulfCountries")}:
                       </Text>
-                      <Text>{worker.previousGulfCountries}</Text>
+                      <Text color="gray.100">{worker.previousGulfCountries}</Text>
                     </HStack>
                   )}
                   <HStack justify="space-between">
-                    <Text fontWeight="bold">{t("worker.form.salaryPerMonth")}:</Text>
-                    <Text>{worker.salaryPerMonth} SAR</Text>
+                    <Text fontWeight="bold" color="gray.200">{t("worker.form.salaryPerMonth")}:</Text>
+                    <Text color="gray.100">{worker.salaryPerMonth} SAR</Text>
                   </HStack>
                   <HStack justify="space-between">
-                    <Text fontWeight="bold">
+                    <Text fontWeight="bold" color="gray.200">
                       {t("worker.form.fullPackagePrice")}:
                     </Text>
-                    <Text>{worker.fullPackagePrice} SAR</Text>
+                    <Text color="gray.100">{worker.fullPackagePrice} SAR</Text>
                   </HStack>
                   <HStack justify="space-between">
-                    <Text fontWeight="bold">
+                    <Text fontWeight="bold" color="gray.200">
                       {t("worker.form.depositAmount")}:
                     </Text>
-                    <Text>{worker.depositAmount} SAR</Text>
+                    <Text color="gray.100">{worker.depositAmount} SAR</Text>
                   </HStack>
                   </VStack>
                   </Box>
@@ -200,7 +200,7 @@ export const WorkerDetailsPage = () => {
 
             {worker.videoUrl && (
               <Box>
-                <Heading size="md" mb={2}>
+                <Heading size="md" mb={2} color="gray.100">
                   {t("worker.form.videoUrl")}
                 </Heading>
                 <Box
@@ -246,24 +246,24 @@ export const WorkerDetailsPage = () => {
           <ModalBody>
             <VStack align="stretch" spacing={3}>
               <HStack justify="space-between">
-                <Text fontWeight="bold">{t("customer.workerName")}:</Text>
-                <Text>{worker.name}</Text>
+                <Text fontWeight="bold" color="gray.200">{t("customer.workerName")}:</Text>
+                <Text color="gray.100">{worker.name}</Text>
               </HStack>
               <HStack justify="space-between">
-                <Text fontWeight="bold">{t("customer.officeName")}:</Text>
-                <Text>{office.name}</Text>
+                <Text fontWeight="bold" color="gray.200">{t("customer.officeName")}:</Text>
+                <Text color="gray.100">{office.name}</Text>
               </HStack>
               <HStack justify="space-between">
-                <Text fontWeight="bold">{t("customer.depositAmount")}:</Text>
-                <Text>{worker.depositAmount} SAR</Text>
+                <Text fontWeight="bold" color="gray.200">{t("customer.depositAmount")}:</Text>
+                <Text color="gray.100">{worker.depositAmount} SAR</Text>
               </HStack>
               <HStack justify="space-between">
-                <Text fontWeight="bold">{t("customer.fullPackagePrice")}:</Text>
-                <Text>{worker.fullPackagePrice} SAR</Text>
+                <Text fontWeight="bold" color="gray.200">{t("customer.fullPackagePrice")}:</Text>
+                <Text color="gray.100">{worker.fullPackagePrice} SAR</Text>
               </HStack>
-              <HStack justify="space-between" pt={2} borderTop="1px" borderColor="gray.200">
-                <Text fontWeight="bold" fontSize="lg">{t("customer.total")}:</Text>
-                <Text fontWeight="bold" fontSize="lg">
+              <HStack justify="space-between" pt={2} borderTop="1px" borderColor="gray.700">
+                <Text fontWeight="bold" fontSize="lg" color="gray.100">{t("customer.total")}:</Text>
+                <Text fontWeight="bold" fontSize="lg" color="gray.100">
                   {worker.fullPackagePrice} SAR
                 </Text>
               </HStack>

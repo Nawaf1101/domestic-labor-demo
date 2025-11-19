@@ -1,7 +1,7 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
 
 const config: ThemeConfig = {
-  initialColorMode: "light",
+  initialColorMode: "dark",
   useSystemColorMode: false,
 };
 
@@ -9,16 +9,16 @@ const theme = extendTheme({
   config,
   colors: {
     brand: {
-      50: "#ffe5e9",
-      100: "#ffb3be",
-      200: "#ff8093",
-      300: "#ff4d68",
-      400: "#ff1a3d",
-      500: "#d2092d", // Primary brand red
-      600: "#a00723",
-      700: "#6e0519",
-      800: "#3c020f",
-      900: "#0a0005",
+      50: "#e0f7fa",
+      100: "#b2ebf2",
+      200: "#80deea",
+      300: "#4dd0e1",
+      400: "#26c6da",
+      500: "#00bcd4", // Primary brand teal/cyan
+      600: "#00acc1",
+      700: "#0097a7",
+      800: "#00838f",
+      900: "#006064",
     },
   },
   fonts: {
@@ -28,16 +28,20 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: "gray.50",
-        color: "gray.800",
+        bg: "gray.900",
+        color: "gray.100",
+      },
+      "select, option": {
+        bg: "gray.800",
+        color: "gray.100",
       },
     },
   },
   shadows: {
-    "soft": "0 2px 8px rgba(0, 0, 0, 0.08)",
-    "medium": "0 4px 16px rgba(0, 0, 0, 0.12)",
-    "large": "0 8px 24px rgba(0, 0, 0, 0.16)",
-    "brand": "0 4px 14px rgba(210, 9, 45, 0.25)",
+    "soft": "0 2px 8px rgba(0, 0, 0, 0.4)",
+    "medium": "0 4px 16px rgba(0, 0, 0, 0.5)",
+    "large": "0 8px 24px rgba(0, 0, 0, 0.6)",
+    "brand": "0 4px 14px rgba(0, 188, 212, 0.4)",
   },
   components: {
     Button: {
@@ -51,10 +55,10 @@ const theme = extendTheme({
       variants: {
         solid: {
           boxShadow: "brand",
-          _hover: {
-            transform: "translateY(-2px)",
-            boxShadow: "0 6px 20px rgba(210, 9, 45, 0.35)",
-          },
+            _hover: {
+              transform: "translateY(-2px)",
+              boxShadow: "0 6px 20px rgba(0, 188, 212, 0.5)",
+            },
           transition: "all 0.2s",
         },
       },
@@ -65,12 +69,14 @@ const theme = extendTheme({
           borderRadius: "xl",
           boxShadow: "soft",
           border: "1px solid",
-          borderColor: "gray.100",
+          borderColor: "gray.700",
+          bg: "gray.800",
           overflow: "hidden",
           transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           _hover: {
             boxShadow: "large",
             transform: "translateY(-4px)",
+            borderColor: "brand.500",
           },
         },
       },
@@ -80,10 +86,15 @@ const theme = extendTheme({
         field: {
           borderRadius: "lg",
           border: "2px solid",
-          borderColor: "gray.200",
+          borderColor: "gray.700",
+          bg: "gray.800",
+          color: "gray.100",
           _focus: {
             borderColor: "brand.500",
-            boxShadow: "0 0 0 3px rgba(210, 9, 45, 0.1)",
+            boxShadow: "0 0 0 3px rgba(0, 188, 212, 0.2)",
+          },
+          _placeholder: {
+            color: "gray.500",
           },
         },
       },
@@ -93,36 +104,99 @@ const theme = extendTheme({
         field: {
           borderRadius: "lg",
           border: "2px solid",
-          borderColor: "gray.200",
+          borderColor: "gray.700",
+          bg: "gray.800",
+          color: "gray.100",
           _focus: {
             borderColor: "brand.500",
-            boxShadow: "0 0 0 3px rgba(210, 9, 45, 0.1)",
+            boxShadow: "0 0 0 3px rgba(0, 188, 212, 0.2)",
           },
         },
+      },
+      parts: ["field", "icon"],
+      variants: {},
+      defaultProps: {
+        variant: null,
       },
     },
     Table: {
       variants: {
         modern: {
           th: {
-            bg: "gray.50",
+            bg: "gray.800",
             fontWeight: "700",
             textTransform: "uppercase",
             fontSize: "xs",
             letterSpacing: "wider",
-            color: "gray.600",
+            color: "gray.300",
             borderBottom: "2px solid",
-            borderColor: "gray.200",
+            borderColor: "gray.700",
           },
           td: {
             borderBottom: "1px solid",
-            borderColor: "gray.100",
+            borderColor: "gray.700",
+            color: "gray.200",
           },
           tr: {
             _hover: {
-              bg: "gray.50",
+              bg: "gray.800",
             },
           },
+        },
+      },
+    },
+    Modal: {
+      baseStyle: {
+        overlay: {
+          bg: "blackAlpha.600",
+        },
+        dialog: {
+          bg: "gray.800",
+        },
+        header: {
+          color: "gray.100",
+        },
+        body: {
+          color: "gray.200",
+        },
+        footer: {
+          color: "gray.200",
+        },
+      },
+    },
+    FormLabel: {
+      baseStyle: {
+        color: "gray.200",
+        fontWeight: "600",
+      },
+    },
+    Checkbox: {
+      baseStyle: {
+        label: {
+          color: "gray.200",
+        },
+      },
+    },
+    NumberInput: {
+      baseStyle: {
+        field: {
+          borderRadius: "lg",
+          border: "2px solid",
+          borderColor: "gray.700",
+          bg: "gray.800",
+          color: "gray.100",
+          _focus: {
+            borderColor: "brand.500",
+            boxShadow: "0 0 0 3px rgba(0, 188, 212, 0.2)",
+          },
+        },
+      },
+    },
+    Alert: {
+      baseStyle: {
+        container: {
+          bg: "gray.800",
+          color: "gray.100",
         },
       },
     },

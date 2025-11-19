@@ -104,7 +104,7 @@ export const CSVImportModal = ({ isOpen, onClose }: CSVImportModalProps) => {
         <ModalCloseButton />
         <ModalBody>
           <VStack spacing={4}>
-            <Text>
+            <Text color="gray.200">
               Select a CSV file with columns: name, imageUrl, videoUrl, cvUrl,
               salaryPerMonth, sex, age, originCountry, religion, type,
               experienceYears, hasWorkedInGulf, previousGulfCountries,

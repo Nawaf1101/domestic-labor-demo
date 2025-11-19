@@ -93,7 +93,7 @@ export const OfficeWorkersPage = () => {
   }
 
   return (
-    <Box bg="gray.50" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
+    <Box bg="gray.900" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
       <Container maxW="1400px" w="100%">
         <VStack spacing={8} align="stretch">
           <VStack align="start" spacing={2}>
@@ -105,7 +105,7 @@ export const OfficeWorkersPage = () => {
             >
               {t("customer.workersForOffice", { officeName: office.name })}
             </Heading>
-            <Text color="gray.600" fontSize="md">
+            <Text color="gray.300" fontSize="md">
               Browse and filter available workers
             </Text>
           </VStack>
@@ -114,12 +114,12 @@ export const OfficeWorkersPage = () => {
             p={6}
             borderWidth="1px"
             borderRadius="xl"
-            bg="white"
+            bg="gray.800"
             boxShadow="soft"
-            borderColor="gray.100"
+            borderColor="gray.700"
           >
             <VStack spacing={5} align="stretch">
-              <Heading size="lg" fontWeight="700" color="gray.800">
+              <Heading size="lg" fontWeight="700" color="gray.100">
                 {t("customer.filters")}
               </Heading>
               <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} spacing={4}>

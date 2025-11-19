@@ -53,18 +53,18 @@ export const LoginPage = () => {
       display="flex"
       alignItems="center"
       justifyContent="center"
-      bgGradient="linear(to-br, brand.50, white, gray.50)"
+      bgGradient="linear(to-br, gray.900, gray.800, gray.900)"
       py={12}
       px={4}
     >
       <Container maxW="md">
         <Box
-          bg="white"
+          bg="gray.800"
           p={10}
           borderRadius="2xl"
           boxShadow="xl"
           border="1px solid"
-          borderColor="gray.100"
+          borderColor="gray.700"
         >
           <VStack spacing={8}>
             <VStack spacing={2}>
@@ -76,7 +76,7 @@ export const LoginPage = () => {
               >
                 {t("auth.title")}
               </Heading>
-              <Text color="gray.600" fontSize="sm">
+              <Text color="gray.300" fontSize="sm">
                 Welcome back! Please login to continue
               </Text>
             </VStack>
@@ -87,7 +87,7 @@ export const LoginPage = () => {
                     status="error"
                     borderRadius="lg"
                     border="2px solid"
-                    borderColor="red.200"
+                    borderColor="red.500"
                   >
                     <AlertIcon />
                     {error}
@@ -105,7 +105,7 @@ export const LoginPage = () => {
                     }
                     placeholder="office1@gulfcare.com"
                     size="lg"
-                    bg="gray.50"
+                    bg="gray.700"
                   />
                 </FormControl>
                 <FormControl isRequired>
@@ -120,7 +120,7 @@ export const LoginPage = () => {
                     }
                     placeholder="office123"
                     size="lg"
-                    bg="gray.50"
+                    bg="gray.700"
                   />
                 </FormControl>
                 <Button

@@ -45,7 +45,7 @@ export const WorkerCard = ({
       }}
       transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
     >
-      <Box position="relative" p={6} bgGradient="linear(to-br, brand.50, gray.50)" display="flex" justifyContent="center" alignItems="center">
+      <Box position="relative" p={6} bgGradient="linear(to-br, brand.900, gray.800)" display="flex" justifyContent="center" alignItems="center">
         <Avatar
           src={worker.imageUrl}
           name={worker.name}
@@ -58,20 +58,22 @@ export const WorkerCard = ({
           position="absolute"
           top={3}
           right={3}
-          bg="white"
+          bg="gray.800"
           borderRadius="full"
           px={3}
           py={1}
           boxShadow="md"
+          border="1px solid"
+          borderColor="gray.700"
         >
-          <Text fontSize="xs" fontWeight="700" color="brand.500">
+          <Text fontSize="xs" fontWeight="700" color="brand.400">
             {worker.salaryPerMonth} SAR
           </Text>
         </Box>
       </Box>
       <CardBody p={5}>
         <VStack align="stretch" spacing={3}>
-          <Text fontWeight="800" fontSize="xl" color="gray.800">
+          <Text fontWeight="800" fontSize="xl" color="gray.100">
             {worker.name}
           </Text>
           <HStack spacing={2} flexWrap="wrap">
@@ -108,7 +110,7 @@ export const WorkerCard = ({
           </HStack>
           <Flex justify="space-between" align="center" pt={2}>
             <VStack align="start" spacing={0}>
-              <Text fontSize="xs" color="gray.500" fontWeight="500">
+              <Text fontSize="xs" color="gray.400" fontWeight="500">
                 {t("worker.form.salaryPerMonth")}
               </Text>
               <Text fontSize="lg" fontWeight="700" color="brand.500">

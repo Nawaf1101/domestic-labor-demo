@@ -69,7 +69,7 @@ export const MyReservationsPage = () => {
   };
 
   return (
-    <Box bg="gray.50" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
+    <Box bg="gray.900" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
       <Container maxW="1400px" w="100%">
         <VStack spacing={8} align="stretch">
           <VStack align="start" spacing={2}>
@@ -81,7 +81,7 @@ export const MyReservationsPage = () => {
             >
               {t("customer.myReservations")}
             </Heading>
-            <Text color="gray.600" fontSize="md">
+            <Text color="gray.300" fontSize="md">
               View and manage your reservation requests
             </Text>
           </VStack>
@@ -90,23 +90,23 @@ export const MyReservationsPage = () => {
             <Box
               textAlign="center"
               py={20}
-              bg="white"
+              bg="gray.800"
               borderRadius="xl"
               boxShadow="soft"
               border="1px solid"
-              borderColor="gray.100"
+              borderColor="gray.700"
             >
-              <Text fontSize="xl" color="gray.600" fontWeight="500">
+              <Text fontSize="xl" color="gray.300" fontWeight="500">
                 {t("customer.noReservations")}
               </Text>
             </Box>
           ) : (
             <Box
-              bg="white"
+              bg="gray.800"
               borderRadius="xl"
               boxShadow="soft"
               border="1px solid"
-              borderColor="gray.100"
+              borderColor="gray.700"
               overflow="hidden"
             >
               <TableContainer>
@@ -127,9 +127,9 @@ export const MyReservationsPage = () => {
                   const details = getRequestDetails(request);
                   return (
                     <Tr key={request.id}>
-                      <Td>{details.workerName}</Td>
-                      <Td>{details.officeName}</Td>
-                      <Td>
+                      <Td color="gray.200">{details.workerName}</Td>
+                      <Td color="gray.200">{details.officeName}</Td>
+                      <Td color="gray.200">
                         {new Date(request.requestedAt).toLocaleDateString()}
                       </Td>
                       <Td>
@@ -137,8 +137,8 @@ export const MyReservationsPage = () => {
                           {t(`customer.status.${request.status}`)}
                         </Badge>
                       </Td>
-                      <Td>{details.depositAmount} SAR</Td>
-                      <Td>{details.fullPackagePrice} SAR</Td>
+                      <Td color="gray.200">{details.depositAmount} SAR</Td>
+                      <Td color="gray.200">{details.fullPackagePrice} SAR</Td>
                       <Td>
                         {request.status === "pending" && (
                           <Button

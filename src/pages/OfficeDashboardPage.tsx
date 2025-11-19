@@ -171,7 +171,7 @@ export const OfficeDashboardPage = () => {
   };
 
   return (
-    <Box bg="gray.50" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
+    <Box bg="gray.900" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
       <Container maxW="1400px" w="100%">
         <VStack spacing={8} align="stretch">
           {/* Header Section */}
@@ -195,7 +195,7 @@ export const OfficeDashboardPage = () => {
                 >
                   {currentOffice?.name || t("office.dashboard")}
                 </Text>
-                <Text color="gray.600" fontSize="md">
+                <Text color="gray.300" fontSize="md">
                   Manage your workers and track your business
                 </Text>
               </VStack>
@@ -224,16 +224,16 @@ export const OfficeDashboardPage = () => {
 
           {/* Statistics Cards */}
           <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} spacing={6}>
-            <Card bg="white" boxShadow="soft" border="1px solid" borderColor="gray.100">
+            <Card bg="gray.800" boxShadow="soft" border="1px solid" borderColor="gray.700">
               <CardBody>
                 <Stat>
-                  <StatLabel fontSize="sm" color="gray.600" fontWeight="600">
+                  <StatLabel fontSize="sm" color="gray.300" fontWeight="600">
                     Total Workers
                   </StatLabel>
                   <StatNumber fontSize="3xl" color="brand.500" fontWeight="800">
                     {stats.totalWorkers}
                   </StatNumber>
-                  <StatHelpText>
+                  <StatHelpText color="gray.400">
                     <StatArrow type="increase" />
                     Active listings
                   </StatHelpText>
@@ -241,10 +241,10 @@ export const OfficeDashboardPage = () => {
               </CardBody>
             </Card>
 
-            <Card bg="white" boxShadow="soft" border="1px solid" borderColor="gray.100">
+            <Card bg="gray.800" boxShadow="soft" border="1px solid" borderColor="gray.700">
               <CardBody>
                 <Stat>
-                  <StatLabel fontSize="sm" color="gray.600" fontWeight="600">
+                  <StatLabel fontSize="sm" color="gray.300" fontWeight="600">
                     Successful Deals
                   </StatLabel>
                   <StatNumber fontSize="3xl" color="green.500" fontWeight="800">
@@ -258,10 +258,10 @@ export const OfficeDashboardPage = () => {
               </CardBody>
             </Card>
 
-            <Card bg="white" boxShadow="soft" border="1px solid" borderColor="gray.100">
+            <Card bg="gray.800" boxShadow="soft" border="1px solid" borderColor="gray.700">
               <CardBody>
                 <Stat>
-                  <StatLabel fontSize="sm" color="gray.600" fontWeight="600">
+                  <StatLabel fontSize="sm" color="gray.300" fontWeight="600">
                     Total Revenue
                   </StatLabel>
                   <StatNumber fontSize="3xl" color="blue.500" fontWeight="800">
@@ -275,10 +275,10 @@ export const OfficeDashboardPage = () => {
               </CardBody>
             </Card>
 
-            <Card bg="white" boxShadow="soft" border="1px solid" borderColor="gray.100">
+            <Card bg="gray.800" boxShadow="soft" border="1px solid" borderColor="gray.700">
               <CardBody>
                 <Stat>
-                  <StatLabel fontSize="sm" color="gray.600" fontWeight="600">
+                  <StatLabel fontSize="sm" color="gray.300" fontWeight="600">
                     Total Fees Earned
                   </StatLabel>
                   <StatNumber fontSize="3xl" color="purple.500" fontWeight="800">
@@ -292,10 +292,10 @@ export const OfficeDashboardPage = () => {
               </CardBody>
             </Card>
 
-            <Card bg="white" boxShadow="soft" border="1px solid" borderColor="gray.100">
+            <Card bg="gray.800" boxShadow="soft" border="1px solid" borderColor="gray.700">
               <CardBody>
                 <Stat>
-                  <StatLabel fontSize="sm" color="gray.600" fontWeight="600">
+                  <StatLabel fontSize="sm" color="gray.300" fontWeight="600">
                     Pending Requests
                   </StatLabel>
                   <StatNumber fontSize="3xl" color="yellow.500" fontWeight="800">
@@ -312,15 +312,15 @@ export const OfficeDashboardPage = () => {
 
           {/* Reservation Requests Table */}
           <Box
-            bg="white"
+            bg="gray.800"
             borderRadius="xl"
             boxShadow="soft"
             border="1px solid"
-            borderColor="gray.100"
+            borderColor="gray.700"
             overflow="hidden"
           >
-            <Box p={6} borderBottom="1px solid" borderColor="gray.100">
-              <Text fontSize="xl" fontWeight="700" color="gray.800">
+            <Box p={6} borderBottom="1px solid" borderColor="gray.700">
+              <Text fontSize="xl" fontWeight="700" color="gray.100">
                 {t("office.reservationRequests")}
               </Text>
             </Box>
@@ -339,7 +339,7 @@ export const OfficeDashboardPage = () => {
                   {officeRequests.length === 0 ? (
                     <Tr>
                       <Td colSpan={5} textAlign="center" py={10}>
-                        <Text color="gray.500">{t("office.noReservationRequests")}</Text>
+                        <Text color="gray.400">{t("office.noReservationRequests")}</Text>
                       </Td>
                     </Tr>
                   ) : (
@@ -356,10 +356,10 @@ export const OfficeDashboardPage = () => {
                                 border="2px solid"
                                 borderColor="brand.200"
                               />
-                              <Text fontWeight="600">{worker?.name || "Unknown"}</Text>
+                              <Text fontWeight="600" color="gray.100">{worker?.name || "Unknown"}</Text>
                             </HStack>
                           </Td>
-                          <Td>
+                          <Td color="gray.200">
                             {new Date(request.requestedAt).toLocaleDateString()}
                           </Td>
                           <Td>
@@ -367,7 +367,7 @@ export const OfficeDashboardPage = () => {
                               {t(`customer.status.${request.status}`)}
                             </Badge>
                           </Td>
-                          <Td fontWeight="600">{worker?.fullPackagePrice || 0} SAR</Td>
+                          <Td fontWeight="600" color="gray.100">{worker?.fullPackagePrice || 0} SAR</Td>
                           <Td>
                             {request.status === "pending" && (
                               <HStack spacing={2}>
@@ -400,15 +400,15 @@ export const OfficeDashboardPage = () => {
 
           {/* Workers Table */}
           <Box
-            bg="white"
+            bg="gray.800"
             borderRadius="xl"
             boxShadow="soft"
             border="1px solid"
-            borderColor="gray.100"
+            borderColor="gray.700"
             overflow="hidden"
           >
-            <Box p={6} borderBottom="1px solid" borderColor="gray.100">
-              <Text fontSize="xl" fontWeight="700" color="gray.800">
+            <Box p={6} borderBottom="1px solid" borderColor="gray.700">
+              <Text fontSize="xl" fontWeight="700" color="gray.100">
                 {t("office.workersList")}
               </Text>
             </Box>
@@ -429,7 +429,7 @@ export const OfficeDashboardPage = () => {
                   {officeWorkers.length === 0 ? (
                     <Tr>
                       <Td colSpan={7} textAlign="center" py={10}>
-                        <Text color="gray.500">{t("common.noData")}</Text>
+                        <Text color="gray.400">{t("common.noData")}</Text>
                       </Td>
                     </Tr>
                   ) : (
@@ -444,7 +444,7 @@ export const OfficeDashboardPage = () => {
                               border="2px solid"
                               borderColor="brand.200"
                             />
-                            <Text fontWeight="600">{worker.name}</Text>
+                            <Text fontWeight="600" color="gray.100">{worker.name}</Text>
                           </HStack>
                         </Td>
                         <Td>
@@ -452,8 +452,8 @@ export const OfficeDashboardPage = () => {
                             {worker.type}
                           </Badge>
                         </Td>
-                        <Td>{worker.age}</Td>
-                        <Td fontWeight="600">{worker.salaryPerMonth} SAR</Td>
+                        <Td color="gray.200">{worker.age}</Td>
+                        <Td fontWeight="600" color="gray.100">{worker.salaryPerMonth} SAR</Td>
                         <Td>
                           <Badge
                             colorScheme={worker.hasWorkedInGulf ? "green" : "gray"}

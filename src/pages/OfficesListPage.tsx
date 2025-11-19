@@ -32,7 +32,7 @@ export const OfficesListPage = () => {
   });
 
   return (
-    <Box bg="gray.50" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
+    <Box bg="gray.900" minH="calc(100vh - 80px)" py={10} w="100%" overflowX="hidden">
       <Container maxW="1400px" w="100%">
         <VStack spacing={8} align="stretch">
           <HStack justify="space-between" align="center">
@@ -45,7 +45,7 @@ export const OfficesListPage = () => {
               >
                 {t("customer.officesList")}
               </Heading>
-              <Text color="gray.600" fontSize="md">
+              <Text color="gray.300" fontSize="md">
                 Choose from our trusted domestic labor offices
               </Text>
             </VStack>
@@ -56,7 +56,7 @@ export const OfficesListPage = () => {
               }
               maxW="250px"
               size="lg"
-              bg="white"
+              bg="gray.800"
               fontWeight="600"
             >
               <option value="rating">{t("customer.sortByRating")}</option>
@@ -78,7 +78,7 @@ export const OfficesListPage = () => {
                 key={office.id}
                 cursor="pointer"
                 onClick={() => navigate(`/customer/office/${office.id}`)}
-                bg="white"
+                bg="gray.800"
                 position="relative"
                 overflow="hidden"
                 _before={{
@@ -102,7 +102,7 @@ export const OfficesListPage = () => {
                         borderColor="brand.200"
                       />
                       <VStack align="start" spacing={0} flex={1}>
-                        <Text fontSize="xl" fontWeight="800" color="gray.800">
+                        <Text fontSize="xl" fontWeight="800" color="gray.100">
                           {office.name}
                         </Text>
                         <HStack spacing={3} mt={1}>
@@ -116,7 +116,7 @@ export const OfficesListPage = () => {
                           >
                             ⭐ {office.rating}
                           </Badge>
-                          <Text fontSize="xs" color="gray.600" fontWeight="500">
+                          <Text fontSize="xs" color="gray.300" fontWeight="500">
                             {office.numberOfReviews} {t("customer.reviews")}
                           </Text>
                         </HStack>
