@@ -1,0 +1,68 @@
+import type { Office } from "../types";
+
+export const offices: Office[] = [
+  {
+    id: "office-1",
+    name: "GulfCare Domestic Office",
+    rating: 4.8,
+    numberOfReviews: 245,
+    loginEmail: "office1@gulfcare.com",
+    loginPassword: "office123",
+    logoUrl: "https://via.placeholder.com/150x150?text=GulfCare",
+  },
+  {
+    id: "office-2",
+    name: "HomeHelp Riyadh",
+    rating: 4.5,
+    numberOfReviews: 189,
+    loginEmail: "office2@homehelp.com",
+    loginPassword: "office123",
+    logoUrl: "https://via.placeholder.com/150x150?text=HomeHelp",
+  },
+  {
+    id: "office-3",
+    name: "Elite Services Agency",
+    rating: 4.9,
+    numberOfReviews: 312,
+    loginEmail: "office3@elite.com",
+    loginPassword: "office123",
+    logoUrl: "https://via.placeholder.com/150x150?text=Elite",
+  },
+  {
+    id: "office-4",
+    name: "Premium Home Solutions",
+    rating: 4.3,
+    numberOfReviews: 156,
+    loginEmail: "office4@premium.com",
+    loginPassword: "office123",
+    logoUrl: "https://via.placeholder.com/150x150?text=Premium",
+  },
+  {
+    id: "office-5",
+    name: "Trusted Workers Co.",
+    rating: 4.6,
+    numberOfReviews: 278,
+    loginEmail: "office5@trusted.com",
+    loginPassword: "office123",
+    logoUrl: "https://via.placeholder.com/150x150?text=Trusted",
+  },
+  {
+    id: "office-6",
+    name: "Family Care Services",
+    rating: 4.4,
+    numberOfReviews: 134,
+    loginEmail: "office6@familycare.com",
+    loginPassword: "office123",
+    logoUrl: "https://via.placeholder.com/150x150?text=Family",
+  },
+  {
+    id: "office-7",
+    name: "Royal Domestic Agency",
+    rating: 4.7,
+    numberOfReviews: 298,
+    loginEmail: "office7@royal.com",
+    loginPassword: "office123",
+    logoUrl: "https://via.placeholder.com/150x150?text=Royal",
+  },
+];
+
