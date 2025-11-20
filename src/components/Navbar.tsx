@@ -4,7 +4,6 @@ import {
   Button,
   Text,
   HStack,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
